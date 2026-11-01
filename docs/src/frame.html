@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Quick Views frame preview</title>
+<link rel="stylesheet" href="common.css"><script src="common.js"></script>
+<style>
+  .canvas { width: 1200px; height: 560px; padding: 56px 64px; }
+  .head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 34px; }
+  .head p { width: 430px; margin: 0; font-size: 17px; color: #333; }
+  .row { display: flex; gap: 28px; }
+  .cell { flex: 1; }
+  .cell .window { height: auto; }
+  .cell .view { aspect-ratio: 16 / 10; }
+  .cap { margin-top: 14px; display: flex; justify-content: space-between; font-size: 15px; }
+  .cap b { font-weight: 600; }
+</style></head>
+<body><div class="canvas">
+  <div class="head">
+    <div><div class="eyebrow">Frame preview</div><h2 style="margin-top:10px">What you see<br>is what you export.</h2></div>
+    <p>The overlay shows the exact image area of the active preset and shades everything outside it – live, while you orbit. Opacity is adjustable.</p>
+  </div>
+  <div class="row">
+    <div class="cell"><div class="window"><div class="bar"><i></i><i></i><i></i></div>
+      <div class="view"><svg class="vp" data-fontsize="44" data-aspect="1.7778" data-label="Quick Views · Full HD"></svg></div></div>
+      <div class="cap"><b>Full HD</b><span class="muted mono">1920 × 1080 · 16:9</span></div></div>
+    <div class="cell"><div class="window"><div class="bar"><i></i><i></i><i></i></div>
+      <div class="view"><svg class="vp" data-fontsize="44" data-aspect="0.8" data-label="Social 4:5"></svg></div></div>
+      <div class="cap"><b>Social 4:5</b><span class="muted mono">1080 × 1350</span></div></div>
+    <div class="cell"><div class="window"><div class="bar"><i></i><i></i><i></i></div>
+      <div class="view"><svg class="vp" data-fontsize="44" data-aspect="0.5625" data-label="Story 9:16" data-opacity="0.8"></svg></div></div>
+      <div class="cap"><b>Social Story 9:16</b><span class="muted mono">1080 × 1920</span></div></div>
+  </div>
+</div></body></html>

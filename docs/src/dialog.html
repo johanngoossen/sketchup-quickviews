@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Quick Views dialog</title>
+<link rel="stylesheet" href="common.css">
+<style>
+  .canvas { width: 1200px; height: 840px; padding: 56px 64px; display: flex; gap: 48px; }
+  .text { width: 330px; padding-top: 6px; }
+  .text ul { padding-left: 18px; margin: 22px 0 0; font-size: 15.5px; line-height: 1.5; }
+  .text li { margin-bottom: 8px; }
+  .shots { position: relative; flex: 1; }
+  .shots img { position: absolute; width: 380px; border-radius: 10px; border: 1px solid #cfcfcf;
+               box-shadow: 0 18px 50px rgba(0,0,0,.16), 0 2px 6px rgba(0,0,0,.08); }
+  .shots .a { left: 0; top: 0; }
+  .shots .b { left: 330px; top: 60px; border-color: #333; }
+</style></head>
+<body><div class="canvas">
+  <div class="text">
+    <div class="eyebrow">The dialog</div>
+    <h2 style="margin-top:10px">Everything on one panel.</h2>
+    <ul>
+      <li>Presets: size, PNG/JPG, JPG quality, anti-aliasing, transparent background, line scale</li>
+      <li>File name pattern with placeholders and live preview</li>
+      <li>Scene checklist with “animation only” filter</li>
+      <li>Output folder remembered per model</li>
+      <li>Light &amp; dark mode, English &amp; German – follows your system</li>
+    </ul>
+  </div>
+  <div class="shots">
+    <img class="a" src="../images/dialog-light.png" alt="">
+    <img class="b" src="../images/dialog-dark.png" alt="">
+  </div>
+</div></body></html>

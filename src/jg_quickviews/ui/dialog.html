@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quick Views</title>
+  <link rel="stylesheet" href="dialog.css">
+</head>
+<body>
+  <main>
+    <section id="sec-preset">
+      <h2 data-i18n="preset">Preset</h2>
+      <div class="row">
+        <select id="preset" aria-label="Preset"></select>
+      </div>
+      <div class="row buttons">
+        <button id="btn-save" type="button" data-i18n="save" data-i18n-title="saveTip"></button>
+        <button id="btn-save-as" type="button" data-i18n="saveAs" data-i18n-title="saveAsTip"></button>
+        <button id="btn-rename" type="button" data-i18n="rename"></button>
+        <button id="btn-delete" type="button" class="danger" data-i18n="delete"></button>
+      </div>
+      <p id="preset-hint" class="hint"></p>
+
+      <div class="grid">
+        <label><span data-i18n="width"></span> <input id="width" type="number" min="1" max="100000" step="1"></label>
+        <label><span data-i18n="height"></span> <input id="height" type="number" min="1" max="100000" step="1"></label>
+        <div class="ratio"><span class="lbl" data-i18n="ratio"></span><span id="ratio">–</span></div>
+        <label><span data-i18n="format"></span>
+          <select id="format"><option value="png">PNG</option><option value="jpg">JPG</option></select>
+        </label>
+        <label id="quality-wrap"><span><span data-i18n="jpgQuality"></span> <span id="quality-val"></span></span>
+          <input id="jpg_quality" type="range" min="1" max="100" step="1">
+        </label>
+        <label><span data-i18n="lineScale"></span>
+          <input id="line_scale" type="number" min="0.1" max="20" step="0.1" data-i18n-title="lineScaleTip">
+        </label>
+      </div>
+      <div class="row checks">
+        <label class="check"><input id="antialias" type="checkbox"> <span data-i18n="antialias"></span></label>
+        <label class="check" id="transparent-wrap"><input id="transparent" type="checkbox"> <span data-i18n="transparent"></span></label>
+      </div>
+      <div class="row checks">
+        <label class="check" id="frame-wrap"><input id="frame" type="checkbox"> <span data-i18n="frame"></span></label>
+      </div>
+      <div class="row opacity">
+        <label class="inline" for="frame_opacity" data-i18n="coverOutside"></label>
+        <input id="frame_opacity" type="range" min="0" max="100" step="5">
+        <span id="frame_opacity-val" class="val"></span>
+      </div>
+    </section>
+
+    <section id="sec-name">
+      <h2 data-i18n="fileName"></h2>
+      <div class="row">
+        <input id="pattern" type="text" spellcheck="false" aria-label="File name pattern">
+      </div>
+      <div class="chips" id="chips"></div>
+      <p class="preview"><span data-i18n="previewLabel"></span> <code id="preview">–</code></p>
+      <div class="row checks">
+        <span class="lbl" data-i18n="existingFiles"></span>
+        <label class="check"><input type="radio" name="existing" value="suffix"> <span data-i18n="suffix"></span></label>
+        <label class="check"><input type="radio" name="existing" value="overwrite"> <span data-i18n="overwrite"></span></label>
+      </div>
+    </section>
+
+    <section id="sec-scenes">
+      <h2><span data-i18n="scenes"></span> <span id="scene-count" class="count"></span></h2>
+      <div class="row buttons">
+        <button id="sc-all" type="button" data-i18n="all"></button>
+        <button id="sc-none" type="button" data-i18n="none"></button>
+        <button id="sc-anim" type="button" data-i18n="animOnly" data-i18n-title="animOnlyTip"></button>
+      </div>
+      <ul id="scenes" class="scenes"></ul>
+    </section>
+
+    <section id="sec-out">
+      <h2 data-i18n="outputFolder"></h2>
+      <div class="row">
+        <input id="directory" type="text" readonly data-i18n-placeholder="noFolder">
+        <button id="btn-dir" type="button" data-i18n="choose"></button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div id="progress-wrap" hidden>
+      <div class="bar"><div id="bar"></div></div>
+      <p id="status" class="status"></p>
+    </div>
+    <div id="summary" hidden></div>
+    <p id="error" class="error" hidden></p>
+    <div class="row buttons end">
+      <button id="btn-cancel" type="button" hidden data-i18n="cancel"></button>
+      <button id="btn-start" type="button" class="primary" data-i18n="start"></button>
+    </div>
+    <p class="credit">
+      Designed by <a href="https://johanngoossen.com" id="credit-link">Johann Gooßen</a>
+      · Quick Views <span id="version"></span>
+    </p>
+  </footer>
+
+  <script src="i18n.js"></script>
+  <script src="dialog.js"></script>
+</body>
+</html>

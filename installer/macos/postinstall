@@ -1,0 +1,27 @@
+#!/bin/sh
+# Quick Views macOS installer: copies the extension into the Plugins folder
+# of every SketchUp version of the logged-in user. Runs as root.
+SRC="$(cd "$(dirname "$0")" && pwd)/payload"
+USER_NAME="$(stat -f%Su /dev/console)"
+HOME_DIR="$(dscl . -read "/Users/$USER_NAME" NFSHomeDirectory 2>/dev/null | awk '{print $2}')"
+[ -n "$HOME_DIR" ] || HOME_DIR="/Users/$USER_NAME"
+USER_GROUP="$(id -gn "$USER_NAME")"
+
+installed=0
+for APP in "$HOME_DIR/Library/Application Support/SketchUp "20*/SketchUp; do
+  [ -d "$APP" ] || continue
+  PLUGINS="$APP/Plugins"
+  mkdir -p "$PLUGINS"
+  rm -rf "$PLUGINS/jg_quickviews" "$PLUGINS/jg_quickviews.rb"
+  cp -R "$SRC/jg_quickviews" "$SRC/jg_quickviews.rb" "$PLUGINS/"
+  chown -R "$USER_NAME:$USER_GROUP" "$PLUGINS"
+  echo "Quick Views installed: $PLUGINS"
+  installed=1
+done
+
+if [ "$installed" = 0 ]; then
+  echo "Quick Views: no SketchUp folder found in $HOME_DIR/Library/Application Support." >&2
+  echo "Start SketchUp once, then run the installer again." >&2
+  exit 1
+fi
+exit 0

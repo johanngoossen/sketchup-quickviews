@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="2">
+  <title>Quick Views for SketchUp</title>
+  <welcome file="welcome.html" mime-type="text/html"/>
+  <conclusion file="conclusion.html" mime-type="text/html"/>
+  <options customize="never" require-scripts="false" hostArchitectures="arm64,x86_64"/>
+  <domains enable_localSystem="true"/>
+  <choices-outline>
+    <line choice="quickviews"/>
+  </choices-outline>
+  <choice id="quickviews" visible="false" title="Quick Views">
+    <pkg-ref id="com.johanngoossen.quickviews"/>
+  </choice>
+  <pkg-ref id="com.johanngoossen.quickviews" version="@VERSION@" onConclusion="none">quickviews-component.pkg</pkg-ref>
+</installer-gui-script>
