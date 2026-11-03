@@ -1,0 +1,37 @@
+name: Release
+
+# Builds QuickViews-<version>.rbz and attaches it to the GitHub release of the tag.
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing tag, e.g. v0.1.0'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  rbz:
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.event.inputs.tag || github.ref_name }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+      - name: Tests
+        run: ruby test/test_core.rb
+      - name: Check version matches tag
+        run: |
+          v="$(sed -n "s/.*VERSION = '\([^']*\)'.*/\1/p" src/jg_quickviews.rb)"
+          [ "v$v" = "$TAG" ] || { echo "VERSION $v does not match tag $TAG"; exit 1; }
+      - name: Build .rbz
+        run: sh tools/build_rbz.sh
+      - name: Attach to release
+        run: |
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "Quick Views ${TAG#v}" --notes ""
+          gh release upload "$TAG" dist/*.rbz --clobber
