@@ -1,9 +1,9 @@
 #!/bin/sh
-# Builds dist/jg_quickviews-<version>.rbz from src/ (without development files).
+# Builds dist/QuickViews-<version>.rbz from src/ (without development files).
 set -e
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 VERSION="$(sed -n "s/.*VERSION = '\([^']*\)'.*/\1/p" "$REPO/src/jg_quickviews.rb")"
-OUT="$REPO/dist/jg_quickviews-$VERSION.rbz"
+OUT="$REPO/dist/QuickViews-$VERSION.rbz"
 mkdir -p "$REPO/dist"
 rm -f "$OUT"
 cd "$REPO/src"

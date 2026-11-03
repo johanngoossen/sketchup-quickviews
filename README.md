@@ -36,34 +36,19 @@ It is made for architects, designers and everyone who regularly needs a set of v
 
 ## Installation
 
-Download the file for your system from the **[latest release](https://github.com/johanngoossen/sketchup-quickviews/releases/latest)**. All three options install the same extension.
+One file for macOS and Windows: the SketchUp extension package (`.rbz`).
 
-### macOS – installer package
+1. Download **`QuickViews-<version>.rbz`** from the **[latest release](https://github.com/johanngoossen/sketchup-quickviews/releases/latest)**.
+2. In SketchUp open **Extensions › Extension Manager** and click **Install Extension**.
+3. Choose the downloaded `.rbz` and confirm.
+4. **Extensions › Quick Views** is available right away, no restart needed.
 
-1. Quit SketchUp.
-2. Download `QuickViews-<version>-macOS.pkg` and double-click it.
-3. Follow the installer (it asks for your Mac password). It installs Quick Views for every SketchUp version found in your user account.
-4. Start SketchUp → **Extensions › Quick Views**.
-
-> **“Apple could not verify …” / “unidentified developer”:** the package is not signed with an Apple Developer ID. Open **System Settings › Privacy & Security**, scroll down and click **Open Anyway** next to the Quick Views message, then confirm. (On older macOS versions: right-click the file → **Open**.)
-
-### Windows – installer
-
-1. Quit SketchUp.
-2. Download `QuickViews-<version>-Windows-Installer.cmd` and double-click it.
-3. If Windows SmartScreen shows “Windows protected your PC”, click **More info › Run anyway**.
-4. A console window shows where Quick Views was installed (every SketchUp version of your user, no admin rights needed). Press any key to close it.
-5. Start SketchUp → **Extensions › Quick Views**.
-
-### Any system – Extension Manager (.rbz)
-
-1. Download `jg_quickviews-<version>.rbz`.
-2. In SketchUp open **Extensions › Extension Manager › Install Extension** and choose the file.
+> **Security prompt:** depending on your loading policy, SketchUp may ask whether to load an unsigned extension. Allow it. The policy is under *Extension Manager › Settings (gear icon) › Loading Policy*.
 
 ### Uninstall / update
 
-- **Uninstall:** *Extensions › Extension Manager*, find **Quick Views**, click **Uninstall**. Or delete `jg_quickviews.rb` and the folder `jg_quickviews` from the SketchUp `Plugins` folder.
-- **Update:** run the new installer (or install the new `.rbz`); it replaces the old version. Your presets and settings are kept.
+- **Uninstall:** *Extensions › Extension Manager*, find **Quick Views**, click **Uninstall**.
+- **Update:** install the new `.rbz` the same way; it replaces the old version. Your presets and settings are kept.
 
 ---
 
@@ -126,7 +111,6 @@ src/jg_quickviews/frame_overlay.rb   Sketchup::Overlay
 src/jg_quickviews/exporter.rb        Timer-driven export, save/restore state
 src/jg_quickviews/dialog.rb          UI::HtmlDialog and callbacks
 src/jg_quickviews/ui/                HTML, CSS, JS (i18n.js = dialog texts)
-installer/                           macOS package scripts, Windows installer template
 docs/                                README images and their HTML sources
 ```
 
@@ -134,8 +118,8 @@ docs/                                README images and their HTML sources
 |---|---|
 | `ruby test/test_core.rb` | Tests for file names, collisions, frame geometry, presets, translations (no SketchUp needed) |
 | `tools/install_dev_loader.sh 2027` | Loads Quick Views directly from `src/` (macOS); adds *Extensions › Quick Views › Reload*. Remove with `--remove`. |
-| `tools/build_rbz.sh` | Builds `dist/jg_quickviews-<version>.rbz` |
-| `tools/build_installers.sh` | Builds the `.rbz`, the macOS `.pkg` and the Windows `.cmd` installer into `dist/` |
+| `tools/build_rbz.sh` | Builds `dist/QuickViews-<version>.rbz` |
+| `git tag v<version> && git push --tags` | GitHub Actions builds the `.rbz` and attaches it to the release `v<version>` (created if missing) |
 | `tools/render_images.sh` | Renders the README images from `docs/src/` with WebKit (macOS) |
 | `python3 tools/make_icons.py` | Toolbar icons as SVG (Windows) and PDF (macOS) |
 | `src/jg_quickviews/ui/dialog.html?mock&lang=en` | Dialog in a browser with `dev_mock.js` (via a local HTTP server; not packaged) |
